@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+	
+	int n;
+	cout<<"Enter the size of file\n";
+	cin>>n;
+	int st,sz;
+	cout<<"Enter the starting point and size \n";
+	cin>>st>>sz;
+
+	srand(time(NULL));
+
+	map<int,int> m;
+	cout<<st<<" ";
+	m[st]++;
+	for(int i=0;i<sz-1;i++){
+		int temp=rand()%sz+1;
+		while(m.count(temp)==1){
+			temp=rand()%sz+1;
+		}
+		cout<<temp<<" ";
+		m[temp]++;
+	}
+	cout<<endl;
+
+}
