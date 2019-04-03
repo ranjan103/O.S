@@ -1,0 +1,54 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool isoverlapping(pair<int,int> a,pair<int,int> b){
+	if(a.first>b.second || a.second<b.first){
+		return false;
+	}
+	return true;
+}
+
+int main(){
+	
+	int n;
+	cout<<"Enter the number of file\n";
+	cin>>n;
+	int a[n];
+	pair<int,int> p[n];
+	
+	for(int i=0;i<n;i++){
+		cout<<"Enter the starting point and size of "<<i+1<<"th file\n";
+		int size;
+		cin>>p[i].first>>size;
+		p[i].second=p[i].first+size-1;
+	}
+
+	int isvisited[n]={0};
+	pair<int,int> ans[n];
+	for(int i=0;i<n;i++){
+		bool flag=0;
+		for(int j=0;j<i;j++){
+			if(isoverlapping(p[i],p[j])){
+				flag=true;
+				break;
+			}
+		}
+		if(flag==true){
+			isvisited[i]=false;
+		}
+		else{
+			isvisited[i]=true;
+			ans[i]=p[i];
+		}
+	}
+
+	for(int i=0;i<n;i++){
+		if(isvisited[i]){
+			cout<<"The allocated location of "<<i+1<<"th file is "<<ans[i].first<<" "<<ans[i].second<<endl;
+		}
+		else{
+			cout<<i+1<<"th file is not allocated"<<endl;
+		}
+	}
+
+}
